@@ -2,9 +2,9 @@ package com.company;
 
 import java.util.Set;
 
-public class Life {
+class Life {
 
-    public int[][] nextGeneration(int[][] oldGeneration) {
+    int[][] nextGeneration(int[][] oldGeneration) {
         int[][] newGeneration = new int[oldGeneration.length][oldGeneration.length];
         for (int i = 0; i < oldGeneration.length; i++) {
             for (int j = 0; j < oldGeneration.length; j++) {

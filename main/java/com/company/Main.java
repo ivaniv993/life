@@ -7,19 +7,20 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    private static int LIMIT = 25;
-
     private static Life life = new Life();
-    private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+    // entry point for program
     public static void main(String[] args) {
-        final int[][] currentGeneration = new int[LIMIT][LIMIT];
-
+        final int[][] currentGeneration = new int[25][25];
         glider(currentGeneration);
+
+        // initialize scheduler
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
         ScheduledFuture<?> scheduledFuture = scheduler.scheduleWithFixedDelay(() -> {
                     output(currentGeneration);
                     int[][] newGeneration = life.nextGeneration(currentGeneration);
+
                     for (int i = 0; i < newGeneration.length; i++) {
                         System.arraycopy(newGeneration[i], 0, currentGeneration[i], 0, newGeneration[i].length);
                     }
